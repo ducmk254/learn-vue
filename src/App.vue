@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <Header title="Task Tracker"/>
-    <Tasks :tasks="tasks" />
+    <Tasks @delete-task="removeTask" @toggle-reminder="toggleReminder" :tasks="tasks" />
   </div>
   
 </template>
@@ -18,47 +18,59 @@ export default {
   },
   data(){
     return {
-      tasks: [{
-        id:1,
-        text:"check a task",
-        day:'23/08/2021',
-        reminder:true
-      }]
+      tasks:[]
     }
   },
-  created() {
-    this.tasks = [
-      {
-        id:1,
-        text:"check a task",
-        day:'23/08/2021',
-        reminder:true
+  methods:{
+      removeTask(id){
+          if(confirm('Are you sure ?')){
+              this.tasks = this.tasks.filter(task=>task.id !== id);
+          }
+          //console.log(id);
       },
-      {
-        id:2,
-        text:"check a task",
-        day:'23/08/2021',
-        reminder:false
-      },
-      {
-        id:3,
-        text:"check a task",
-        day:'23/08/2021',
-        reminder:false
-      },
-      {
-        id:4,
-        text:"check a task",
-        day:'23/08/2021',
-        reminder:true
+      toggleReminder(id){
+        console.log(id);
+        this.tasks = this.tasks.map(task=>task.id === id ? {...task,reminder:!task.reminder} : {...task}) 
       }
-    ]
-  }
-
+    }
+  ,
+  created() {
+      this.tasks = [
+        {
+          id:1,
+          text:"check a task",
+          day:'23/08/2021',
+          reminder:true
+        },
+        {
+          id:2,
+          text:"check a task",
+          day:'23/08/2021',
+          reminder:false
+        },
+        {
+          id:3,
+          text:"check a task",
+          day:'23/08/2021',
+          reminder:false
+        },
+        {
+          id:4,
+          text:"check a task",
+          day:'23/08/2021',
+          reminder:false
+        }
+      ]
+  },
 }
 </script>
 
 <style>
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 .container{
   margin: 0 auto;
   padding: 10px;
