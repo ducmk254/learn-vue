@@ -5,9 +5,10 @@
 export default {
     name:'Button',
     props:{name:{type:String,default:"button"}},
+    emits:['toggle-add-task'],
     methods:{
         onClick(){
-            console.log('click');
+            this.$emit('toggle-add-task');
         }
     }
 }

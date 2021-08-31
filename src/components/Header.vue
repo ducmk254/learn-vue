@@ -1,7 +1,7 @@
 <template>
-    <header>
+    <header >
         <h1>{{title}}</h1>
-        <Button name="Add task"></Button>
+        <Button @toggle-add-task="$emit('toggle-add-task')" name="Add task" @click="onClick"></Button>
     </header>
 </template>
 
@@ -14,8 +14,10 @@ export default {
         title:{
             type: String,
             default:'HelloWorld'
-        }
-    },
+        },
+        showAddTask:Boolean
+    }
+    ,
     components:{
         Button
     }

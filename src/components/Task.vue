@@ -44,6 +44,6 @@ export default {
 
 }
 .reminder{
-    border-left: 3px solid green;
+    border-left: 3px solid red;
 }
 </style>
